@@ -1,0 +1,29 @@
+{% extends 'fitness/base.html' %}
+
+{% block content %}
+<h2>Your Diet Plans</h2>
+<a href="{% url 'add_diet' %}" class="btn btn-primary mb-3">Add New Diet</a>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Meal Name</th>
+            <th>Calories</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for diet in diets %}
+        <tr>
+            <td>{{ diet.meal_name }}</td>
+            <td>{{ diet.calories }}</td>
+            <td>{{ diet.date }}</td>
+            <td>
+                <a href="{% url 'delete_diet' diet.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

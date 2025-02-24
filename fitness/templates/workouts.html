@@ -1,0 +1,31 @@
+{% extends 'fitness/base.html' %}
+
+{% block content %}
+<h2>Your Workouts</h2>
+<a href="{% url 'add_workout' %}" class="btn btn-primary mb-3">Add New Workout</a>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Duration (minutes)</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for workout in workouts %}
+        <tr>
+            <td>{{ workout.title }}</td>
+            <td>{{ workout.description }}</td>
+            <td>{{ workout.duration }}</td>
+            <td>{{ workout.date }}</td>
+            <td>
+                <a href="{% url 'delete_workout' workout.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
