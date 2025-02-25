@@ -1,9 +1,16 @@
 from django.db import models
 
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings  # import settings to access AUTH_USER_MODEL
+#User = settings.AUTH_USER_MODEL
 
+
+class CustomUser(AbstractUser):
+    age = models.IntegerField(null=True, blank=True)
+        
 class Workout(models.Model):
-    user= models.ForeignKey(User, on_delete=models.CASCADE)#on_delete=models.CASCADE ensures that if a user is deleted, their associated workouts are removed,
+    user= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)#on_delete=models.CASCADE ensures that if a user is deleted, their associated workouts are removed,
     title= models.CharField(max_length=255)
     description= models.TextField()
     duration= models.IntegerField(help_text="Duration in minutes")
@@ -15,7 +22,7 @@ class Workout(models.Model):
         return str(self.title)#making it easier to identify records in the Django Admin panel
     
 class DietPlan(models.Model):
-    user= models.ForeignKey(User, on_delete=models.CASCADE) #on_delete=models.CASCADE ensures that if a user is deleted, their diet plans are removed
+    user= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #on_delete=models.CASCADE ensures that if a user is deleted, their diet plans are removed
     meal_name= models.CharField(max_length=255)
     calories= models.IntegerField()
     date= models.DateField(auto_now_add=True)
@@ -24,6 +31,8 @@ class DietPlan(models.Model):
     
     def __str__(self):
         return str(self.meal_name)#making it easier to identify records in the Django Admin panel
-        
+    
+
+
     
     

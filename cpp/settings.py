@@ -25,7 +25,7 @@ SECRET_KEY = 'f@_hg#oci-e!cg96!@ev)@9hfhl#!4g@-$v3mu%gyz40dm2zek'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['6c57dc04b2cf486fa8284621aaf3849c.vfs.cloud9.eu-west-1.amazonaws.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -121,3 +121,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATCFILES_DIRS= [os.path.join(BASE_DIR, 'static')]
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+AUTH_USER_MODEL = 'fitness.CustomUser'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
