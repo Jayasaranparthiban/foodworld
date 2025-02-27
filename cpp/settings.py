@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+from django.contrib.messages import constants as messages
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,6 +42,10 @@ INSTALLED_APPS = [
     
     'fitness', 
 ]
+
+MESSAGE_TAGS = {
+    messages.ERROR: "danger", #bootstrap class for error messages
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,8 +128,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATCFILES_DIRS= [os.path.join(BASE_DIR, 'static')]
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
 
 AUTH_USER_MODEL = 'fitness.CustomUser'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

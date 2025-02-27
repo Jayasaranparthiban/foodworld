@@ -3,20 +3,45 @@ from django.contrib.auth.decorators import login_required
 from .models import Workout, DietPlan
 from .forms import WorkoutForm, DietPlanForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
+from django. contrib import messages
+from django.contrib.auth import get_user_model, login
+from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegisterForm
 
+User = get_user_model()  #get the correct user model dynamically
 def register_user(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('home') #redirect to home after signup
-    else:
-        form = RegisterForm()
-    return render(request, 'fitness/register.html', {'form':form})
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+        confirm_password = request.POST["confirm_password"]
+        
+        #check if passwords match
+        if password != confirm_password:
+            messages.error(request,"passwords do not match.")
+            return redirect("register")
+        
+        #check if username already exists
+        if User.objects.filter(username=username).exists():
+            messages.error(request,"Username already exists.")
+            return redirect("register")
+        
+        #check if email already exists
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email is already in use.")
+            return redirect("register")
+        
+        #create the user
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
 
+        messages.success(request, "Registration successful! You Can Now Log In.")
+        login(request, user) #automatically log the user in after registration
+        return redirect("home") #redirect to homepage
+    
+    return render(request, "register.html")
 def login_user(request):
     if request.method =='POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -28,8 +53,9 @@ def login_user(request):
                 login(request, user)
                 return redirect('home')
     else:
-        form = AuthenticationForm()
-    return render(request, 'fitness/login.html', {'form': form})
+           return render(request, 'login.html', {'error': 'Invalid username or password'})
+    
+    return render(request, 'login.html')
 
 def logout_user(request):
     logout(request)
@@ -89,5 +115,8 @@ def delete_diet(request, id):
 def login(request):
     return render(request, 'login.html')
     
+def workout_list(request):
+    workouts = Workout.objects.filter(user=request.user)
+    return render(request, 'fitness/workouts.html', {'workouts': workouts})
 
 

@@ -7,7 +7,10 @@ from django.conf import settings  # import settings to access AUTH_USER_MODEL
 
 
 class CustomUser(AbstractUser):
-    age = models.IntegerField(null=True, blank=True)
+    email = models.EmailField(unique=True) #ensure email is unique
+
+    def __str__(self):
+        return self.username
         
 class Workout(models.Model):
     user= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)#on_delete=models.CASCADE ensures that if a user is deleted, their associated workouts are removed,
