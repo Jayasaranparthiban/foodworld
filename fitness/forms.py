@@ -35,3 +35,4 @@ class DietPlanForm(forms.ModelForm):
     class Meta:
         model = DietPlan
         fields = ['meal_name', 'calories']
+

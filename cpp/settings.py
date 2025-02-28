@@ -128,7 +128,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATCFILES_DIRS= [os.path.join(BASE_DIR, 'static')]
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'diets/'
 LOGOUT_REDIRECT_URL = 'login'
 
 AUTH_USER_MODEL = 'fitness.CustomUser'

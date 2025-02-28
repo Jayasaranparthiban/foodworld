@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="text-center">User Login</h2>
-    <form method="POST" class="p-4 shadow bg-light rounded">
+    <form method="POST" action="{% url 'login' %}" class="p-4 shadow bg-light rounded">
         {% csrf_token %}
         <div class="mb-3">
             <label class="form-label">Username</label>
@@ -13,8 +13,10 @@
             <label class="form-label">Password</label>
             <input type="password" name="password" class="form-control" required>
         </div>
-        {% if error %}
-            <p class="text-danger">{{ error }}</p>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="text-danger">{{ message }}</p>
+            {% endfor %}
         {% endif %}
         <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
