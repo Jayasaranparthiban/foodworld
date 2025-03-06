@@ -1,4 +1,4 @@
-{% extends 'fitness/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 <h2>Your Workouts</h2>
@@ -23,6 +23,7 @@
             <td>{{ workout.date }}</td>
             <td>
                 <a href="{% url 'delete_workout' workout.id %}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'update_workout' workout.id %}" class="btn btn-danger btn-sm">Update</a>
             </td>
         </tr>
         {% endfor %}

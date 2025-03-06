@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -125,11 +124,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+
 STATIC_URL = '/static/'
-STATCFILES_DIRS= [os.path.join(BASE_DIR, 'static')]
+
+# Tell Django where to find your static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'cpp/static')  # Ensure this points to the correct static folder
+]
+
+# This is required when running `collectstatic` for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# STATCFILES_DIRS= [os.path.join(BASE_DIR, 'static')]
+print (STATICFILES_DIRS)
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGIN_REDIRECT_URL = 'diets/'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL ='login'
 
 AUTH_USER_MODEL = 'fitness.CustomUser'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

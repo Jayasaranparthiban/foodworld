@@ -1,4 +1,4 @@
-{% extends 'fitness/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 <h2>Your Diet Plans</h2>
@@ -21,6 +21,7 @@
             <td>{{ diet.date }}</td>
             <td>
                 <a href="{% url 'delete_diet' diet.id %}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'update_diet' diet.id %}" class="btn btn-warning btn-sm">Update</a>
             </td>
         </tr>
         {% endfor %}

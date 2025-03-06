@@ -82,7 +82,7 @@ def home(request):
 @login_required
 def workout_list(request):
     workouts = Workout.objects.filter(user=request.user)
-    return render(request, 'fitness/workouts.html', {'workouts': workouts})
+    return render(request, 'workouts.html', {'workouts': workouts})
 
 @login_required
 def add_workout(request):
@@ -95,7 +95,19 @@ def add_workout(request):
             return redirect('workout_list')
     else:
         form = WorkoutForm()
-    return render(request, 'fitness/add_workout.html', {'form': form})
+    return render(request, 'add_workouts.html', {'form': form})
+
+@login_required
+def update_workout(request, id):
+    workout = get_object_or_404(Workout, id=id)
+    if request.method == 'POST':
+        form = WorkoutForm(request.POST, instance=workout)
+        if form.is_valid():
+            form.save()
+            return redirect('workout_list')
+    else:
+        form = WorkoutForm(instance=workout)
+    return render(request, 'update_workout.html', {'form': form})
 
 @login_required
 def delete_workout(request, id):
@@ -106,7 +118,7 @@ def delete_workout(request, id):
 @login_required
 def diet_list(request):
     diets = DietPlan.objects.filter(user=request.user)
-    return render(request, 'fitness/mydiets.html', {'diets': diets})
+    return render(request, 'mydiets.html', {'diets': diets})
 
 @login_required
 def add_diet(request):
@@ -119,8 +131,19 @@ def add_diet(request):
             return redirect('diet_list')
     else:
         form = DietPlanForm()
-    return render(request, 'fitness/add_diet.html', {'form': form})
+    return render(request, 'add_diet.html', {'form': form})
 
+@login_required
+def update_diet(request, id):
+    diet = get_object_or_404(DietPlan, id=id)
+    if request.method == 'POST':
+        form = DietPlanForm(request.POST, instance=diet)
+        if form.is_valid():
+            form.save()
+            return redirect('diet_list')
+    else:
+        form = DietPlanForm(instance=diet)
+    return render(request, 'update_diet.html', {'form': form})
 @login_required
 def delete_diet(request, id):
     diet = get_object_or_404(DietPlan, id=id)
@@ -132,6 +155,6 @@ def delete_diet(request, id):
 
 def workout_list(request):
     workouts = Workout.objects.filter(user=request.user)
-    return render(request, 'fitness/workouts.html', {'workouts': workouts})
+    return render(request, 'workouts.html', {'workouts': workouts})
 
 
