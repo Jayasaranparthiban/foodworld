@@ -1,5 +1,5 @@
 .home-background {
-    background: url('http://127.0.0.1:8000/static/images/wrkpic.jpg') no-repeat center center;
+    background: url('https://cpp-fitness.s3.us-east-1.amazonaws.com/wrkpic.jpg') no-repeat center center;
     background-size: cover;
     height: 100vh;
     display: flex;

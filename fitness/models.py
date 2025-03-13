@@ -16,7 +16,7 @@ class Workout(models.Model):
     user= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)#on_delete=models.CASCADE ensures that if a user is deleted, their associated workouts are removed,
     title= models.CharField(max_length=255)
     description= models.TextField()
-    duration= models.IntegerField(help_text="Duration in minutes")
+    duration= models.PositiveIntegerField(help_text="Duration in minutes")
     date= models.DateField(auto_now_add=True)#This helps in tracking daily progress without requiring manual input
 
     objects= models.Manager()
