@@ -9,6 +9,7 @@
         <tr>
             <th>Meal Name</th>
             <th>Protien</th>
+            <th>Grams</th>
             <th>Date</th>
             <th>Actions</th>
         </tr>
@@ -18,6 +19,7 @@
         <tr>
             <td>{{ diet.meal_name }}</td>
             <td>{{ diet.protien }}</td>
+            <td>{{diet.grams}}</td>
             <td>{{ diet.date }}</td>
             <td>
                 <a href="{% url 'delete_diet' diet.id %}" class="btn btn-danger btn-sm">Delete</a>

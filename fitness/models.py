@@ -28,6 +28,7 @@ class DietPlan(models.Model):
     user= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #on_delete=models.CASCADE ensures that if a user is deleted, their diet plans are removed
     meal_name= models.CharField(max_length=255)
     protien= models.PositiveIntegerField(default=0 )
+    grams= models.PositiveIntegerField(default=0)
     date= models.DateField(auto_now_add=True) 
     
     objects= models.Manager()#This helps in tracking daily progress without requiring manual input
