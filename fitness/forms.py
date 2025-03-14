@@ -28,7 +28,7 @@ class WorkoutForm(forms.ModelForm):
 class DietPlanForm(forms.ModelForm):
     class Meta:
         model = DietPlan
-        fields = ['meal_name', 'calories']
+        fields = ['meal_name', 'protien']
 
 class UpdateWorkoutForm(forms.ModelForm):
     class Meta:
@@ -38,4 +38,4 @@ class UpdateWorkoutForm(forms.ModelForm):
 class UpdateDietPlanForm(forms.ModelForm):
     class Meta:
         model = DietPlan
-        fields = ["meal_name", "calories"]
+        fields = ["meal_name", "protien"]

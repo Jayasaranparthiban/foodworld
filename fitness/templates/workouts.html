@@ -23,7 +23,7 @@
             <td>{{ workout.date }}</td>
             <td>
                 <a href="{% url 'delete_workout' workout.id %}" class="btn btn-danger btn-sm">Delete</a>
-                <a href="{% url 'update_workout' workout.id %}" class="btn btn-danger btn-sm">Update</a>
+                <a href="{% url 'update_workout' workout.id %}" class="btn btn-warning btn-sm">Update</a>
             </td>
         </tr>
         {% endfor %}
