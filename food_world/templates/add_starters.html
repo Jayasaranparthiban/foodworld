@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Add New Starters</h2>
+<form method="POST" class="card p-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Save Starters Plan</button>
+    <a href="{% url 'starters_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

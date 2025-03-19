@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'fitness', 
+    'food_world', 
 ]
 
 MESSAGE_TAGS = {
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'cpp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'new_db.sqlite3'),
     }
 }
 
@@ -139,8 +139,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 print (STATICFILES_DIRS)
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-LOGIN_REDIRECT_URL = 'diets/'
+LOGIN_REDIRECT_URL = 'starters/'
 LOGOUT_REDIRECT_URL ='login'
 
-AUTH_USER_MODEL = 'fitness.CustomUser'
+AUTH_USER_MODEL = 'food_world.CustomUser'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
