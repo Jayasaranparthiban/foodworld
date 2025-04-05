@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Your Starters</h2>
+<a href="{% url 'add_starters' %}" class="btn btn-primary mb-3">Add New Starters</a>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Meal Name</th>
+            <th>Description</th>
+            <th>Duration (minutes)</th>
+            <th>Grams</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for starters in starters %}
+        <tr>
+            <td>{{ starters.meal_name }}</td>
+            <td>{{ starters.description }}</td>
+            <td>{{starters.duration}}</td>
+            <td>{{starters.grams}}</td>
+            <td>{{ starters.date }}</td>
+            <td>
+                <a href="{% url 'delete_starters' starters.id %}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'update_starters' starters.id %}" class="btn btn-success btn-sm">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
