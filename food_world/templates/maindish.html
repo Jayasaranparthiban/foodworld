@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Your Maindish</h2>
+<a href="{% url 'add_maindish' %}" class="btn btn-primary mb-3">Add New Maindish</a>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Meal Name </th>
+            <th>Description</th>
+            <th>Duration (minutes)</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for maindish in maindish %}
+        <tr>
+            <td>{{ maindish.meal_name }}</td>
+            <td>{{ maindish.description }}</td>
+            <td>{{ maindish.duration }}</td>
+            <td>{{ maindish.date }}</td>
+            <td>
+                <a href="{% url 'delete_maindish' maindish.id %}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'update_maindish' maindish.id %}" class="btn btn-success btn-sm">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
