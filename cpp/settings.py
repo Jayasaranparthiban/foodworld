@@ -146,3 +146,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS=['https://x23424567foodworld-env.eba-gyhm8px4.us-west-1.elasticbeanstalk.com']
  
+#sonar
