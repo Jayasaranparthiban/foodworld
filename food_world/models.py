@@ -22,7 +22,7 @@ class Maindish(models.Model):
     objects= models.Manager()
     
     def __str__(self):
-        return str(self.title)#making it easier to identify records in the Django Admin panel
+        return str(self.meal_name)#making it easier to identify records in the Django Admin panel
     
 class Starters(models.Model):
     user= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #on_delete=models.CASCADE ensures that if a user is deleted, their diet plans are removed
